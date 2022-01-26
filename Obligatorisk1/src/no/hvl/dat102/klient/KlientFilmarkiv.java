@@ -11,7 +11,7 @@ public class KlientFilmarkiv {
 		meny.start();
 		
 		Tekstgrensesnitt inter = new Tekstgrensesnitt();
-		System.out.println(inter.lesFilm());
+		inter.skrivUtProdusent(filma, "George Lucas");
 		
 		
 	}

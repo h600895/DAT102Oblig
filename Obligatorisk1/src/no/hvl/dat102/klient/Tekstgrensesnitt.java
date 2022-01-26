@@ -22,17 +22,34 @@ public class Tekstgrensesnitt {
 
 		
 	}
-	public void visFilm(int nr) { //FilmarkivADT skal ikke være paramter, retur skal kanskje være void
-		
+	public Film visFilm(int nr, FilmarkivADT filma) { //FilmarkivADT skal ikke være paramter, men finner ikke ut hvordan løse den ellers.
+		return filma.finnFilm(nr);
 	}
 	public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng) {
 		Film[] filmer = filma.soekTittel(delstreng);
 		
 	}
-	public void skrivUtProsusent(FilmarkivADT filma, String delstreng) {
+	public void skrivUtProdusent(FilmarkivADT filma, String delstreng) {
+		//Elendig og veldig lite effektiv måte:
+		boolean funnet = false;
+		if (filma.antall() > 0) {
+			for (int i = 1; i < filma.antall(); i++) {
+				
+				Film filmen = filma.finnFilm(i);
+				if (filmen != null) {
+					if (filmen.getProdusent().contains(delstreng)) {
+						funnet = true;
+						System.out.println(filmen);
+					}
+				}
+				
+			}
+			if (!funnet) {
+				System.out.println("Fant ingen film med denne produsenten");
+			}
+		}
+		}
 		
-		
-	}
 	public void skrivUtStatestikk(FilmarkivADT filma) {
 		
 	}
