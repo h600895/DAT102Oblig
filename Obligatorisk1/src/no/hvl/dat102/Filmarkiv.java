@@ -87,7 +87,7 @@ public class Filmarkiv implements FilmarkivADT {
 
 	@Override
 	public int antall() {
-		return filmsamling.length;
+		return antall;
 	}
 	
 	//Legger til egen toString metode
