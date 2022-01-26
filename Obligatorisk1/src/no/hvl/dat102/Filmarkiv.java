@@ -15,14 +15,13 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 	
 	@Override
-	public void visFilm(int nr) {
+	public Film finnFilm(int nr) {
 		for(int i = 0; i < antall; i++ ) {
 			if (filmsamling[i].getFilmnr() == nr) {
-				System.out.println(filmsamling[i]);
-				break;
+				return filmsamling[i];
 			}
 		}
-		System.out.println("Finne filmen finnes ikke i arkivet!");
+		return null;
 		
 	}
 
@@ -90,5 +89,7 @@ public class Filmarkiv implements FilmarkivADT {
 	public int antall() {
 		return filmsamling.length;
 	}
+	
+	//Legger til egen toString metode
 	
 }

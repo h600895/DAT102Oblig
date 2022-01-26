@@ -10,7 +10,7 @@ public interface FilmarkivADT {
 	* @param nr nummer på film som skal vises. Om nummeret ikke finnes,
 	* skrives en feilmelding.
 	*/
-	void visFilm(int nr);
+	Film finnFilm(int nr);
 	/**
 	* Legger til en ny film.
 	* @param nyFilm

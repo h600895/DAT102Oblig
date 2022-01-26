@@ -9,5 +9,10 @@ public class KlientFilmarkiv {
 		FilmarkivADT filma = new Filmarkiv(100);
 		Meny meny = new Meny(filma);
 		meny.start();
+		
+		Tekstgrensesnitt inter = new Tekstgrensesnitt();
+		System.out.println(inter.lesFilm());
+		
+		
 	}
 }

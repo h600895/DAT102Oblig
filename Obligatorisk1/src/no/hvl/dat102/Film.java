@@ -72,5 +72,12 @@ public class Film {
 		Film other = (Film) obj;
 		return filmnr == other.filmnr;
 	}
+	@Override
+	public String toString() {
+		return "Film: filmnr=" + filmnr + ", aar=" + aar + ", produsent=" + produsent + ", tittel=" + tittel
+				+ ", selskap=" + selskap + ", sjanger=" + sjanger;
+	}
+	
+
 	
 }

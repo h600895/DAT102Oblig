@@ -22,8 +22,6 @@ public class Meny {
 		filmarkiv.leggTilFilm(new Film(6, "George Lucas", "Star Wars: Recenge of the Sith", 2005, Sjanger.SCIFI, "Lucasfilm"));
 		filmarkiv.leggTilFilm(new Film(7, "George Lucas", "Star Wars: The Force Awakence", 1915, Sjanger.SCIFI, "Lucasfilm"));
 		filmarkiv.leggTilFilm(new Film(8, "George Lucas", "Star Wars: The Last Jedi", 2017, Sjanger.SCIFI, "Lucasfilm"));
-		filmarkiv.leggTilFilm(new Film(9, "George Lucas", "Star Wars: The Rise of Skywalker", 2019, Sjanger.SCIFI, "Lucasfilm"));
-		
-		
+		filmarkiv.leggTilFilm(new Film(9, "George Lucas", "Star Wars: The Rise of Skywalker", 2019, Sjanger.SCIFI, "Lucasfilm"));		
 	}
 }
