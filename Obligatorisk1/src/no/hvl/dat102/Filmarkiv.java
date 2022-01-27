@@ -7,7 +7,7 @@ import no.hvl.dat102.adt.FilmarkivADT;
 public class Filmarkiv implements FilmarkivADT {
 	
 	private Film[] filmsamling;
-	int antall;
+	private int antall;
 	
 	public Filmarkiv(int n) {
 		filmsamling = new Film[n];
@@ -78,7 +78,7 @@ public class Filmarkiv implements FilmarkivADT {
 	public int antall(Sjanger sjanger) {
 		int teller = 0;
 		for (int i = 0; i < antall; i++) {
-			if (filmsamling[i].getSjanger() == sjanger) {
+			if (filmsamling[i].getSjanger().equals(sjanger)) {
 				teller++;
 			}
 		}

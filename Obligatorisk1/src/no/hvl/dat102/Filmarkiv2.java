@@ -122,7 +122,7 @@ public class Filmarkiv2 implements FilmarkivADT {
 			if (node.getElement() == null) {
 				return antallet;
 			}
-			if (node.getElement().getSjanger() == sjanger) {
+			if (node.getElement().getSjanger().equals(sjanger)) {
 				antallet++;
 			}
 			node = node.getNeste();

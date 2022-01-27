@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Film {
 	
-	int filmnr, aar;
-	String produsent, tittel, selskap;
-	Sjanger sjanger;
+	private int filmnr, aar;
+	private String produsent, tittel, selskap;
+	private Sjanger sjanger;
 	
 	public Film(int filmnr, String produsent, String tittel, int aar, Sjanger sjanger, String selskap) {
 		this.filmnr = filmnr;
