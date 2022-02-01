@@ -64,7 +64,7 @@ public class Filmarkiv implements FilmarkivADT {
 		return (Film[]) filmer.toArray();
 	}
 	
-	public Film[] soekProdusent(String delstreng) {
+	/*public Film[] soekProdusent(String delstreng) {
 		ArrayList<Film> filmer = new ArrayList<>();
 		for (int i = 0; i < antall; i++) {
 			if (filmsamling[i].getProdusent().contains(delstreng) ) {
@@ -72,7 +72,7 @@ public class Filmarkiv implements FilmarkivADT {
 			}
 		}
 		return (Film[]) filmer.toArray();
-	}
+	}*/
 
 	@Override
 	public int antall(Sjanger sjanger) {

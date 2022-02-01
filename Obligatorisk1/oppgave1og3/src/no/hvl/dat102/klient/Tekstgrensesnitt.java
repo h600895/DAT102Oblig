@@ -21,27 +21,26 @@ public class Tekstgrensesnitt {
 		String inputen = input.nextLine();
 		String[] split = inputen.split(", ");
 		return new Film(Integer.parseInt(split[0]) , split[1], split[2], Integer.parseInt(split[3]), Sjanger.valueOf(split[4].toUpperCase()), split[5]);
-
-
 	}
-	public Film visFilm(int nr, FilmarkivADT filma) { //FilmarkivADT skal ikke være paramter, men finner ikke ut hvordan løse den ellers.
-		return filma.finnFilm(nr);
+	public void visFilm(Film film) { 
+		System.out.println(film);
 	}
 	public void skrivUtFilmDelstrengITittel(FilmarkivADT filma, String delstreng) {
 		Film[] filmer = filma.soekTittel(delstreng);
-
+		for (Film filmen: filmer) {
+			visFilm(filmen);
+		}
 	}
 	public void skrivUtProdusent(FilmarkivADT filma, String delstreng) {
 		//Elendig og veldig lite effektiv måte:
 		boolean funnet = false;
 		if (filma.antall() > 0) {
 			for (int i = 0; i < filma.antall(); i++) {
-
 				Film filmen = filma.finnFilm(i);
 				if (filmen != null) { //Kan ligge null-pekere i tabellen. Kan bruke try,catch.
 					if (filmen.getProdusent().contains(delstreng)) {
 						funnet = true;
-						System.out.println(filmen);
+						visFilm(filmen);
 					}
 				}
 			}
