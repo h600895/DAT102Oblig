@@ -49,35 +49,12 @@ public class Tekstgrensesnitt {
 			}
 		}
 	}
-	public void skrivUtStatestikk(FilmarkivADT filma) {
-		HashMap<String, Integer> dict = new HashMap();
-		Sjanger[] sjangre = Sjanger.values();
-		/*for (Sjanger sjangeren: sjangre) {
-			System.out.println(sjangeren);
-			dict.put(sjangeren, 0);
-		 */
-		for(int i = 0; i < filma.antall(); i++) {
-			Film filmen = filma.finnFilm(i);
-			if (filmen != null) {
-				//Første bokstav i stringen blir stor bokstav resten små (.capitalize())
-				String sjanger = capitalize(filmen.getSjanger().toString());
-				if (!dict.containsKey(sjanger)) {
-					dict.put(sjanger, 1);
-				}
-				else {
-					dict.put(sjanger, dict.get(sjanger)+1);
-				}
-			}
-			
-		}
-		for (Entry<String, Integer> item: dict.entrySet()) {
-			System.out.println(item.getKey() + ": " + item.getValue());
-
-		}
-		System.out.println("Det er totalt " + filma.antall() + " filmer i akrivet");
-	}
-	private String capitalize(String string) {
-		return string.substring(0, 1).toUpperCase() + string.toLowerCase().substring(1);
-	}
+	//skriv ut antall filmer og antall filmer i hver sjanger
+    public void skrivUtStatistikk(FilmarkivADT filma){
+        System.out.println("Totalt antall filmer: " + filma.antall());
+        for (Sjanger sjanger : Sjanger.values()){
+            System.out.println("Filmer av sjanger " + sjanger.toString() + ": " + filma.antall(sjanger));
+        }
+    }
 	
 }

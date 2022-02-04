@@ -3,7 +3,7 @@ package no.hvl.dat102.klient;
 import no.hvl.dat102.Filmarkiv;
 import no.hvl.dat102.adt.FilmarkivADT;
 
-public class KlientFilmarkiv {
+public class KlientFilmarkiv2 {
 
 	public static void main(String[] args) {
 		FilmarkivADT filma = new Filmarkiv(100);
@@ -12,7 +12,7 @@ public class KlientFilmarkiv {
 		
 		Tekstgrensesnitt inter = new Tekstgrensesnitt();
 		inter.skrivUtProdusent(filma, "George Lucas");
-		inter.skrivUtStatistikk(filma);
+		inter.skrivUtStatestikk(filma);
 		
 		
 	}
