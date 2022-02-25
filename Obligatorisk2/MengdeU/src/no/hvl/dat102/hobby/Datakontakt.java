@@ -9,11 +9,13 @@ import no.hvl.dat102.mengde.tabell.TabellMengde;
 public class Datakontakt {
 	private MengdeADT<Medlem> medlemmer;
 	private int antall;
+	private int indeksNr;
 
 	
 	public Datakontakt() {
 		antall = 0;
-		medlemmer = new TabellMengde<Medlem>(); //Antar dette skal være en tabell og ikke kjedet.
+		indeksNr = 0;
+		medlemmer = new KjedetMengde<Medlem>();
 	}
 	
 	public void leggTilMedlem(Medlem person) {
@@ -27,16 +29,27 @@ public class Datakontakt {
 		return medlem.getStatusIndeks();
 	}
 	public int finnPartnerFor(String medlemsnavn) {
-		
+		Medlem medlem = finnMedlemMedNavn(medlemsnavn);
 		Iterator<Medlem> teller = medlemmer.oppramser();
 		Medlem element;
-		while (teller.hasNext()) {
+		while(teller.hasNext()) {
 			element = teller.next();
-			if (element.passerTil(element)) {
-				
+			if (medlem.passerTil(element)) {
+				medlem.setStatusIndeks(indeksNr);
+				element.setStatusIndeks(indeksNr);
+				indeksNr++;
+				return element.getStatusIndeks();
 			}
 		}
+		return -1;
 	}
+	public void tilbakestillStatusIndeks(String medelmsnavn) {
+		Medlem medlem = finnMedlemMedNavn(medelmsnavn);
+		medlem.setStatusIndeks(-1);
+		
+	}
+	
+	//Lager en hjelpemetide som finner medlem med hjelp av navn.
 	private Medlem finnMedlemMedNavn(String medlemsnavn) {
 		Iterator<Medlem> medlemmerIt = medlemmer.oppramser();
 		while (medlemmerIt.hasNext()) {
