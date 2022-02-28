@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="DobbelKjedetListeU/src"/>
+	<classpathentry kind="src" path="ListeOrdnetU/src"/>
+	<classpathentry kind="src" path="ListeOrdnetU/TestOrdnetListe"/>
+	<classpathentry kind="src" path="MengdeU/src"/>
+	<classpathentry kind="src" path="MengdeU/Test"/>
+	<classpathentry kind="src" path="Oppgave2/src"/>
+	<classpathentry kind="output" path="DobbelKjedetListeU/bin"/>
+</classpath>
