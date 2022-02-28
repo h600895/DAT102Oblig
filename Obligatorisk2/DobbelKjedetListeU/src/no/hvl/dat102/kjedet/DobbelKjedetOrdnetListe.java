@@ -13,7 +13,7 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 		siste = new DobbelNode<T>(maksVerdi);
 		
 		foerste.setNeste(siste);
-		siste.setNeste(foerste);
+		siste.setForrige(foerste);
 		
 		antall = 0; //Tar ikke med første og siste node siden disse "ikke eksisterer".
 	}
@@ -104,8 +104,9 @@ public class DobbelKjedetOrdnetListe<T extends Comparable<T>> implements DobbelK
 	public void visListe() {
 		DobbelNode<T> aktuell = foerste.getNeste();
 		while (!aktuell.equals(siste)) {
-			System.out.println(aktuell.getElement());
-			aktuell.getNeste();
+		//while (aktuell != null) {
+		System.out.println(aktuell.getElement());
+			aktuell = aktuell.getNeste();
 		}
 		
 		

@@ -131,18 +131,18 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilOgInnholder() {
-		//liste.leggTil(e2);
+		liste.leggTil(e2);
 		liste.leggTil(e1);
-		//liste.leggTil(e4);
+		liste.leggTil(e4);
 		liste.leggTil(e0);
-		//liste.leggTil(e3);
+		liste.leggTil(e3);
 		
 		assertTrue(liste.inneholder(e0));
 		assertTrue(liste.inneholder(e1));
-		/*assertTrue(liste.inneholder(e2));
+		assertTrue(liste.inneholder(e2));
 		assertTrue(liste.inneholder(e3));
 		assertTrue(liste.inneholder(e4));
-		assertFalse(liste.inneholder(e5));*/
+		assertFalse(liste.inneholder(e5));
 
 	}
 

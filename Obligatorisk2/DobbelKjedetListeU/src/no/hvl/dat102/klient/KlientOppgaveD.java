@@ -5,17 +5,17 @@ import no.hvl.dat102.kjedet.DobbelKjedetOrdnetListe;
 public class KlientOppgaveD {
 
 	public static void main(String[] args) {
-		DobbelKjedetOrdnetListe<Integer> liste = new DobbelKjedetOrdnetListe<Integer>(0, 100);
-		
+		DobbelKjedetOrdnetListe<Integer> liste = new DobbelKjedetOrdnetListe<Integer>(-1, 100000);
 		liste.leggTil(1);
 		liste.leggTil(2);
 		liste.leggTil(6);
 		liste.leggTil(4);
 		liste.leggTil(30);
-		
+
 		liste.visListe();
 		
 		liste.fjern(1);
+		liste.visListe();
 		
 
 	}

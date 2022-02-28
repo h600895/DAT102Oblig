@@ -106,7 +106,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 	private int finn(T el) {
 		int i = 0, resultat = IKKE_FUNNET;
 		while (bak > i) {
-			if (liste[i] == el) {
+			if (liste[i].equals(el)) {
 				return i;
 			}
 			i++;
