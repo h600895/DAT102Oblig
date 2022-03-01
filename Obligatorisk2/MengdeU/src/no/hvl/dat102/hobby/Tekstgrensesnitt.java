@@ -2,11 +2,7 @@ package no.hvl.dat102.hobby;
 
 import java.util.Scanner;
 
-import no.hvl.dat102.hobby.Datakontakt;
 import no.hvl.dat102.mengde.adt.MengdeADT;
-import no.hvl.dat102.hobby.Hobby;
-import no.hvl.dat102.hobby.Medlem;
-import no.hvl.dat102.hobby.Tekstgrensesnitt;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Tekstgrensesnitt extends Datakontakt{
