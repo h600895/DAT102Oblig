@@ -1,5 +1,9 @@
 package no.hvl.dat102.tabell;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import no.hvl.dat102.adt.OrdnetListeADT;
 import no.hvl.dat102.exceptions.EmptyCollectionException;
 
@@ -24,8 +28,8 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = fjern(siste());
-		bak--;
+		T resultat = siste();
+		fjern(siste());
 		
 		return resultat;
 	}
@@ -37,7 +41,6 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 		T resultat = liste[0];
 		fjern(liste[0]);
-		bak--;
 		
 		return resultat;
 	}
@@ -71,11 +74,30 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-
+		T[] hjelper = (T[]) (new Comparable[liste.length]);
 		if (bak >= liste.length) {
 			utvid();
 		}
-		liste[bak] = element;
+		if(erTom()) {
+			liste[0] = element;
+		} else if (element.compareTo(siste()) > 0) {
+			liste[bak] = element;
+		} else {
+			int i = 0;
+			while(liste[i].compareTo(element) <= 0){
+				i++;
+			}
+			for(int j = 0; j < i; j++) {
+				hjelper[j] = liste[j];
+			}
+			
+			hjelper[i] = element;
+			
+			for(int j = i +1; j < bak+1; j++) {
+				hjelper[j] = liste[j-1];
+			}
+			liste = hjelper;
+		}
 		bak++;
 	}
 
@@ -97,7 +119,7 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		for (int i = indeks; i < bak-1; i++) {
 			liste[i] = liste[i+1];
 		}
-		
+		bak--;
 		
 		return resultat;
 

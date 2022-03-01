@@ -3,6 +3,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.Console;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -53,6 +55,8 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilOgFjern() {
+		
+		
 		liste.leggTil(e0);
 		liste.leggTil(e1);
 		liste.leggTil(e2);
@@ -73,29 +77,28 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void viseOrdnetIkkeAvtagende() {
-		// ... Legg til elementer og bruk fjernFoerste
-		liste.leggTil(e0);
 		liste.leggTil(e1);
 		liste.leggTil(e2);
-		liste.leggTil(e3);
+		liste.leggTil(e5);
+		liste.leggTil(e0);
 		liste.leggTil(e4);
-		
+		liste.leggTil(e3);
 		assertEquals(e0, liste.fjernFoerste());
 		assertEquals(e1, liste.fjernFoerste());
-		
-		liste.leggTil(e5);
 		assertEquals(e2, liste.fjernFoerste());
-		
+		assertEquals(e3, liste.fjernFoerste());
+		assertEquals(e4, liste.fjernFoerste());
+		assertEquals(e5, liste.fjernFoerste());
 	}
 
 	@Test
 	public final void viseOrdnetIkkeStigende() { // 4 >= 5 >= 5 >= 5 >= 6 ...
-		liste.leggTil(e0);
 		liste.leggTil(e1);
 		liste.leggTil(e2);
-		liste.leggTil(e3);
-		liste.leggTil(e4);
 		liste.leggTil(e5);
+		liste.leggTil(e0);
+		liste.leggTil(e4);
+		liste.leggTil(e3);
 		assertEquals(e5, liste.fjernSiste());
 		assertEquals(e4, liste.fjernSiste());
 		assertEquals(e3, liste.fjernSiste());
@@ -109,12 +112,12 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilOgfjernMedDuplikater() {
+		
 		liste.leggTil(e0);
 		liste.leggTil(e1);
 		liste.leggTil(e4);
 		liste.leggTil(e1);
 		liste.leggTil(e2);
-		liste.leggTil(e3);
 		liste.leggTil(e3);
 
 		assertEquals(e0, liste.fjern(e0));
@@ -136,7 +139,7 @@ public abstract class OrdnetListeADTTest {
 		liste.leggTil(e4);
 		liste.leggTil(e0);
 		liste.leggTil(e3);
-		
+
 		assertTrue(liste.inneholder(e0));
 		assertTrue(liste.inneholder(e1));
 		assertTrue(liste.inneholder(e2));
@@ -152,8 +155,8 @@ public abstract class OrdnetListeADTTest {
 	@Test
 	public final void erIkkeTom() {
 		liste.leggTil(e1);
-		liste.leggTil(e3);
 		liste.leggTil(e2);
+		liste.leggTil(e3);
 		liste.leggTil(e4);
 		liste.leggTil(e5);
 		assertFalse(liste.erTom());
@@ -164,15 +167,11 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilFjernErTom() {
-			
-		assertEquals(null, liste.fjern(e0));
-		liste.leggTil(e0);
-		assertEquals(null, liste.fjern(e1));
-		
-		
-		
-		
-		// ...Fyll ut. Legg inn elementer og fjern de
+		liste.leggTil(e1);
+		liste.leggTil(e2);
+		assertEquals(e2, liste.fjern(e2));
+		assertEquals(e1, liste.fjern(e1));
+		assertTrue(liste.erTom());
 	}
 
 	/**
