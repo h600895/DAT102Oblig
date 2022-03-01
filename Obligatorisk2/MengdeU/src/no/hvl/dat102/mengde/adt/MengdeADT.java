@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import no.hvl.dat102.exception.EmptyCollectionException;
 
-public interface MengdeADT<T> {
+public interface MengdeADT<T> extends Iterable<T>{
 	// Interface som definerer alle operasjoner i en ADT
 	// med navn MengdeADT (en datasamling, en høynivå datastruktur)
 
@@ -107,7 +107,7 @@ public interface MengdeADT<T> {
 	 */
 	
 	
-	Iterator<T> oppramser();
+	Iterator<T> iterator();
 
 	
 

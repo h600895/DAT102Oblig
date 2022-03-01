@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
-import no.hvl.dat102.mengde.klient.Medlem;
+import no.hvl.dat102.hobby.Medlem;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Datakontakt {

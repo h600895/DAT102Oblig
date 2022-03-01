@@ -1,8 +1,6 @@
 package no.hvl.dat102.hobby;
 
-import java.util.Objects;
-
-import no.hvl.dat102.mengde.klient.Hobby;
+import no.hvl.dat102.hobby.Hobby;
 
 public class Hobby {
 	private String hobbyNavn;

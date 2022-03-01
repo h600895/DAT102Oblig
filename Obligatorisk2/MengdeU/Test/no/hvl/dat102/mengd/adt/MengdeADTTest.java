@@ -1,16 +1,11 @@
 package no.hvl.dat102.mengd.adt;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
-import no.hvl.dat102.mengde.kjedet.KjedetMengde;
-import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public abstract class MengdeADTTest {
 

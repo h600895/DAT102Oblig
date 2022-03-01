@@ -2,8 +2,8 @@ package no.hvl.dat102.hobby;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
 import no.hvl.dat102.mengde.kjedet.KjedetMengde;
-import no.hvl.dat102.mengde.klient.Hobby;
-import no.hvl.dat102.mengde.klient.Medlem;
+import no.hvl.dat102.hobby.Hobby;
+import no.hvl.dat102.hobby.Medlem;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Medlem {
