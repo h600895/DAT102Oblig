@@ -22,7 +22,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjernFoerste() {
-		//fjerner og returnerer første elementet
+		//fjerner og returnerer fÃ¸rste elementet
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
@@ -31,6 +31,8 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if(foerste == null) { //lista blir tom etter fjerning
 			siste = null;
 		}
+		antall--;
+
 		return resultat;
 	}
 
@@ -121,7 +123,7 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (denne != null && element.equals(denne.getElement())) { // funnet
 			antall--;
 			svar = denne.getElement();
-			if (forrige == null) { // Første element
+			if (forrige == null) { // FÃ¸rste element
 				foerste = foerste.getNeste();
 				if (foerste == null) { // Tom liste
 					siste = null;

@@ -55,6 +55,8 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void leggTilOgFjern() {
+		
+		
 		liste.leggTil(e0);
 		liste.leggTil(e1);
 		liste.leggTil(e2);
@@ -75,15 +77,14 @@ public abstract class OrdnetListeADTTest {
 	 */
 	@Test
 	public final void viseOrdnetIkkeAvtagende() {
-		// ... Fyll ut
-		// ... Legg til elementer og bruk fjernFoerste
+
 		liste.leggTil(e1);
 		liste.leggTil(e2);
 		liste.leggTil(e5);
 		liste.leggTil(e0);
 		liste.leggTil(e4);
 		liste.leggTil(e3);
-		System.out.println(liste);
+
 		assertEquals(e0, liste.fjernFoerste());
 		assertEquals(e1, liste.fjernFoerste());
 		assertEquals(e2, liste.fjernFoerste());
@@ -164,7 +165,7 @@ public abstract class OrdnetListeADTTest {
 	}
 
 	/**
-	 * Tester om leggTil-fjern på en tom liste gir en tom liste.
+	 * Tester om leggTil-fjern pÃ¥ en tom liste gir en tom liste.
 	 */
 	@Test
 	public final void leggTilFjernErTom() {
@@ -176,7 +177,7 @@ public abstract class OrdnetListeADTTest {
 	}
 
 	/**
-	 * Prøver å ta ut et element fra en tom liste.
+	 * PrÃ¸ver Ã¥ ta ut et element fra en tom liste.
 	 * 
 	 */
 	@Test
