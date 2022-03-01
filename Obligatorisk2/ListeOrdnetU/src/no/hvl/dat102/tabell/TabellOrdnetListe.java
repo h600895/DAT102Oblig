@@ -36,8 +36,9 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjernFoerste() {
-		if (erTom())
+		if (erTom()) {
 			throw new EmptyCollectionException("ordnet liste");
+			}
 
 		T resultat = liste[0];
 		fjern(liste[0]);

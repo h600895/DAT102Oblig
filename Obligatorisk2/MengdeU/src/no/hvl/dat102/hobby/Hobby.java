@@ -2,32 +2,32 @@ package no.hvl.dat102.hobby;
 
 import java.util.Objects;
 
-public class Hobby {
+import no.hvl.dat102.mengde.klient.Hobby;
 
+public class Hobby {
 	private String hobbyNavn;
-	
+
 	public Hobby(String hobby) {
 		hobbyNavn = hobby;
 	}
+
 	@Override
 	public String toString() {
-		return "<" + hobbyNavn + ">";
+		String resultat = "<" + this.hobbyNavn + ">";
+		return resultat;
 	}
-	/*@Override
-	public int hashCode() {
-		return Objects.hash(hobbyNavn);
-	}*/
+
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Hobby other = (Hobby) obj;
-		return Objects.equals(hobbyNavn, other.hobbyNavn);
+	public boolean equals(Object hobby2) {
+		Hobby hobbyAndre = (Hobby)hobby2;
+		return(hobbyNavn.equals(hobbyAndre.getHobbyNavn()));
 	}
-	
-	
+
+	public String getHobbyNavn() {
+		return hobbyNavn;
+	}
+
+	public void setHobbyNavn(String hobbyNavn) {
+		this.hobbyNavn = hobbyNavn;
+	}
 }
