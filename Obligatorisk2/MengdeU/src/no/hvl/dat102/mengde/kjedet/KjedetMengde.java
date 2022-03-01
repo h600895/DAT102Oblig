@@ -1,7 +1,7 @@
 package no.hvl.dat102.mengde.kjedet;
 
 //********************************************************************
-// Kjedet implementasjon av en mengde. 
+// Kjedet implementasjon av en mengde.
 //********************************************************************
 import java.util.Iterator;
 import java.util.Random;
@@ -23,9 +23,20 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	}//
 
 	@Override
+	public String toString() {
+		String resultat = "";
+		LinearNode<T> aktuell = start;
+		while(aktuell != null) {
+			resultat += aktuell.getElement().toString() + "\t";
+			aktuell = aktuell.getNeste();
+		}
+		return resultat;
+	}
+
+	@Override
 	public void leggTil(T element) {
 		if (!(inneholder(element))) {
-			LinearNode<T> node = new LinearNode<T>(element);
+			LinearNode<T> node = new LinearNode<>(element);
 			node.setNeste(start);
 			start = node;
 			antall++;
@@ -34,7 +45,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public void leggTilAlle(MengdeADT<T> m2) {
-		Iterator<T> teller = m2.oppramser();
+		Iterator<T> teller = m2.iterator();
 		while (teller.hasNext()) {
 			leggTil(teller.next());
 		}
@@ -114,7 +125,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		return funnet;
 	}
 	/*
-	 * Når vi overkjører (ovverride) equals- meteoden er det anbefalt at vi også
+	 * Når vi overkjører (override) equals- meteoden er det anbefalt at vi også
 	 * overkjører hashcode-metoden da en del biblioteker bruker hascode sammen med
 	 * equals. Vi kommer tilbake til forklaring og bruk av hashcode senere i faget.
 	 */
@@ -130,37 +141,37 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public boolean equals(Object ny) {
-		// TODO
+
 		if (this == ny) {
 			return true;
 		}
-		if (ny == null) {
+		if ((ny == null) || (getClass() != ny.getClass())) {
 			return false;
 		}
-		if (getClass() != ny.getClass()) {
-			return false;
-		} 
-			boolean likeMengder = true;
-			MengdeADT<T> m2 = (KjedetMengde<T>) ny;
-			if (this.antall != m2.antall()) {
-				likeMengder = false;
-			} else {
-				likeMengder = true;
-				Iterator<T> teller = m2.oppramser();
-				while (teller.hasNext() && likeMengder) {
-					T element = teller.next();
-					if (!this.inneholder(element)) {
-						likeMengder = false;
-					}
+		boolean likeMengder = true;
+		MengdeADT<T> m2 = (KjedetMengde<T>) ny;
+		if (this.antall != m2.antall()) {
+			likeMengder = false;
+		} else {
+			likeMengder = true;
+			Iterator<T> teller = m2.iterator();
+			while (teller.hasNext() && likeMengder) {
+				T element = teller.next();
+				if (!this.inneholder(element)) {
+					likeMengder = false;
 				}
-				return likeMengder;
 			}
+			return likeMengder;
+		}
+
 		return false;
 	}
+
 	@Override
 	public boolean erTom() {
 		return antall == 0;
 	}
+
 	@Override
 	public int antall() {
 		return antall;
@@ -168,8 +179,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> union(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> begge = new KjedetMengde<T>();
+		// TODO - lage en mer effektiv kode
+		MengdeADT<T> begge = new KjedetMengde<>();
 		LinearNode<T> aktuell = start;
 		T element = null;
 
@@ -177,7 +188,8 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			((KjedetMengde<T>) begge).settInn(aktuell.getElement());
 			aktuell = aktuell.getNeste();
 		}
-		Iterator<T> teller = m2.oppramser();
+
+		Iterator<T> teller = m2.iterator();
 		while (teller.hasNext()) {
 			element = teller.next();
 			if (!this.inneholder(element)) {// tester mot "konstant" mengde
@@ -190,58 +202,62 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 
 	@Override
 	public MengdeADT<T> snitt(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> snittM = new KjedetMengde<T>();
-		LinearNode<T> aktuell = start;
-		//Iterator<T> mengde = m2.oppramser();
-		while(aktuell != null) {
-			if(m2.inneholder(aktuell.getElement())) {
-				snittM.leggTil(aktuell.getElement());
+		//Snitt skal ta felles elementer fra this og m2, og legge de inn i en ny mengde.
+
+		MengdeADT<T> snittM = new KjedetMengde<>();
+		Iterator<T> teller = m2.iterator();
+		//mens m2 har flere elementer skal en while-loop gå gjennom og sammenligne elementer
+		while (teller.hasNext()) {
+			T element = teller.next();
+			if(this.inneholder(element)) {
+				((KjedetMengde<T>) snittM).settInn(element);
 			}
-			aktuell = aktuell.getNeste();
 		}
 		return snittM;
 	}
 
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
-		// TODO
-		MengdeADT<T> differensM = new KjedetMengde<T>();
-		MengdeADT snitt = snitt(m2);
-		LinearNode<T> aktuell = start;
-		while(aktuell != null) {
-			if(!snitt.inneholder(aktuell.getElement())) {
-				differensM.leggTil(aktuell.getElement());
+		//Jeg antar at differens er this-mengden minus m2-mengden.
+		MengdeADT<T> differensM = new KjedetMengde<>();
+		Iterator<T> teller = this.iterator();
+		while(teller.hasNext()) {
+			T element = teller.next();
+			//når m2 ikke inneholder elementet fra this, skal det være med i differensM
+			if(!m2.inneholder(element)) {
+				((KjedetMengde<T>) differensM).settInn(element);
 			}
-			aktuell = aktuell.getNeste();
 		}
 		return differensM;
 	}
 
 	@Override
-	public boolean undermengde(MengdeADT<T> m2) { //Antar this\m2
-		
-		MengdeADT snitt = snitt(m2);
-		LinearNode aktuell = start;
-		Iterator<T> mengde = m2.oppramser();
-		while(mengde.hasNext()) {
-			if(!snitt.inneholder(mengde.next())) {
-				return false;
+	public boolean undermengde(MengdeADT<T> m2) {
+		// TODO
+		//Jeg antar at vi sjekker om this-mengden er en undermengde av m2-mengden
+		boolean erUnderMengde = true;
+		Iterator<T> teller = this.iterator();
+		//this-mengden er en undermengde hvis alle elementer i this eksisterer i m2
+		while(teller.hasNext() && erUnderMengde) {
+			T element = teller.next();
+			if(!m2.inneholder(element)) {
+				erUnderMengde = false;
 			}
 		}
-		return true;
+		return erUnderMengde;
 	}
 
 	@Override
-	public Iterator<T> oppramser() {
-		return new KjedetIterator<T>(start);
+	public Iterator<T> iterator() {
+		return new KjedetIterator<>(start);
 	}
 
 	private void settInn(T element) {
-		LinearNode<T> nyNode = new LinearNode<T>(element);
+		LinearNode<T> nyNode = new LinearNode<>(element);
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;
 	}
+
 
 }// class

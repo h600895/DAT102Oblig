@@ -3,6 +3,7 @@ package no.hvl.dat102.mengd.adt;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,103 +13,155 @@ import no.hvl.dat102.mengde.kjedet.KjedetMengde;
 import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public abstract class MengdeADTTest {
-	
-	private MengdeADT<Integer> mengde;
-	private MengdeADT<Integer> mengde2;
-	private MengdeADT<Integer> testMengde;
-	
-	private Integer e1 = 1;
-	private Integer e2 = 2;
-	private Integer e3 = 3;
-	private Integer e4 = 4;
-	private Integer e5 = 5;
-	private Integer e6 = 6;
-	private Integer e7 = 7;
-	private Integer e8 = 8;
+
+	private MengdeADT<Integer> m1;
+	private MengdeADT<Integer> m2;
+	private MengdeADT<Integer> fasit;
+
+	//Testdata
+	private Integer e0 = 1;
+	private Integer e1 = 2;
+	private Integer e2 = 3;
+	private Integer e3 = 4;
+	private Integer e4 = 5;
+	private Integer e5 = 6;
+	private Integer e6 = 7;
+	private Integer e7 = 8;
+	private Integer e8 = 9;
+	private Integer e9 = 10;
 
 	protected abstract MengdeADT<Integer> reset();
-	
+
 	@BeforeEach
-	public void setup() {
-		mengde = reset();
-		mengde2 = reset();
-		testMengde = reset();
+	public final void setup() {
+		m1 = reset();
+		m2 = reset();
+		fasit = reset();
 	}
-	
+
 	@Test
-	public void union() {
-		//Tester den tomme mengden (100 tomme indexer)
-		assertEquals(testMengde, mengde.union(mengde2));
-		
-		mengde.leggTil(e1);
-		mengde.leggTil(e2);
-		mengde.leggTil(e4);
-		mengde2.leggTil(e2);
-		mengde2.leggTil(e4);
-		//UnionMengde
-		testMengde.leggTil(e1);
-		testMengde.leggTil(e2);
-		testMengde.leggTil(e4);
-		
-		assertEquals(testMengde, mengde.union(mengde2));
-		//Legger til et nytt element
-		mengde.leggTil(e8);
-		testMengde.leggTil(e8);
-		assertEquals(testMengde, mengde.union(mengde2));
-		
+	void testUnionDisjunkte() {
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		fasit.leggTil(e3);
+		fasit.leggTil(e4);
+		fasit.leggTil(e5);
+		fasit.leggTil(e6);
+		fasit.leggTil(e7);
+		fasit.leggTil(e8);
+		fasit.leggTil(e9);
+
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		m2.leggTil(e7);
+		m2.leggTil(e8);
+		m2.leggTil(e9);
+		MengdeADT<Integer> begge = m1.union(m2);
+		assertTrue(fasit.equals(begge));
+	}
+
+	@Test
+	void testUnionFelles() {
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		fasit.leggTil(e3);
+		fasit.leggTil(e4);
+		fasit.leggTil(e5);
+		fasit.leggTil(e6);
+
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e2);
+		m2.leggTil(e3);
+		m2.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		MengdeADT<Integer> begge = m1.union(m2);
+		assertTrue(fasit.equals(begge));
+	}
+
+	@Test
+	void testSnittDisjunkte() {
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		m2.leggTil(e7);
+		m2.leggTil(e8);
+		m2.leggTil(e9);
+		MengdeADT<Integer> snitt = m1.snitt(m2);
+		assertTrue(fasit.equals(snitt));
 	}
 	@Test
-	public void snitt() {
-		assertEquals(testMengde, mengde.snitt(mengde2));
-		
-		
-		mengde.leggTil(e1);
-		
-		System.out.println(mengde.snitt(mengde2));
-		assertEquals(testMengde, mengde.snitt(mengde2));
-		
-		mengde.leggTil(e2);
-		mengde.leggTil(e3);
-		mengde2.leggTil(e1);
-		
-		//TestMengde
-		testMengde.leggTil(e1);
-		assertEquals(testMengde, mengde.snitt(mengde2));
-		mengde2.leggTil(e2);
-		mengde2.leggTil(e6);
-		testMengde.leggTil(e2);
-		assertEquals(testMengde, mengde.snitt(mengde2));
+	void testSnittFelles() {
+		fasit.leggTil(e2);
+		fasit.leggTil(e3);
+		fasit.leggTil(e4);
+
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e2);
+		m2.leggTil(e3);
+		m2.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		MengdeADT<Integer> snitt = m1.snitt(m2);
+		assertTrue(fasit.equals(snitt));
+	}
+
+	@Test
+	void testDifferensDisjunkt() {
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+		fasit.leggTil(e2);
+		fasit.leggTil(e3);
+		fasit.leggTil(e4);
+
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		m2.leggTil(e7);
+		m2.leggTil(e8);
+		m2.leggTil(e9);
+		MengdeADT<Integer> differens = m1.differens(m2);
+		assertTrue(fasit.equals(differens));
 	}
 	@Test
-	public void differns() {
-		mengde.leggTil(e1);
-		mengde.leggTil(e2);
-		mengde.leggTil(e3);
-		
-		mengde2.leggTil(e1);
-		mengde2.leggTil(e2);
-		
-		//Testmengde
-		testMengde.leggTil(e3);
-		assertEquals(testMengde, mengde.differens(mengde2));
+	void testDifferensFelles() {
+		fasit.leggTil(e0);
+		fasit.leggTil(e1);
+
+		m1.leggTil(e0);
+		m1.leggTil(e1);
+		m1.leggTil(e2);
+		m1.leggTil(e3);
+		m1.leggTil(e4);
+		m2.leggTil(e2);
+		m2.leggTil(e3);
+		m2.leggTil(e4);
+		m2.leggTil(e5);
+		m2.leggTil(e6);
+		MengdeADT<Integer> differens = m1.differens(m2);
+		assertTrue(fasit.equals(differens));
 	}
-	@Test
-	public void underMengde() {
-		assertTrue(mengde.undermengde(mengde2));
-		mengde.leggTil(e1);
-		mengde.leggTil(e2);
-		mengde.leggTil(e3);
-		
-		mengde2.leggTil(e1);
-		mengde2.leggTil(e2);
-		
-		//System.out.println(mengde.undermengde(mengde2));
-		assertTrue(mengde.undermengde(mengde2));
-		mengde2.leggTil(e8);
-		assertFalse(mengde.undermengde(mengde2));
-		mengde.leggTil(e8);
-		mengde.leggTil(e7);
-		assertTrue(mengde.undermengde(mengde2));
-	}
-	
- }
+}
