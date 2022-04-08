@@ -1,6 +1,4 @@
-package oppgave4;
-
-import oppgave4.TabellHaug;
+package oppgave5;
 
 public class KlientHaug {
 	public static void main(String[] a) {

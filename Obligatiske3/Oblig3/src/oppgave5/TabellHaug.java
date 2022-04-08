@@ -1,4 +1,4 @@
-package oppgave4;
+package oppgave5;
 
 public class TabellHaug<T extends Comparable<T>> {
 	// Lager en minimumshaug

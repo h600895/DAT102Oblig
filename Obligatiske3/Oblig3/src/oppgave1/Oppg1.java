@@ -11,15 +11,6 @@ public class Oppg1 {
         }
     }
 	
-	private Integer[] genererTilfeldig(int antall) {
-		Random tilfeldig = new Random();
-        Integer[] tabell = new Integer[antall];
-        for(int i = 0; i < tabell.length; i++) {
-            tabell[i] = tilfeldig.nextInt(tabell.length);
-        }
-        return tabell;
-	}
-	
 	// bytter plass på a[i] og a[j]
 	private static void swap(Object[] a, int i, int j) {
 		Object temp = a[i];
