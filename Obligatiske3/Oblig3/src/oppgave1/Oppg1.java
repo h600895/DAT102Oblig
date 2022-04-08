@@ -28,8 +28,8 @@ public class Oppg1 {
 	}
 	
 	// Vanlig insettingssortering
-	public static <T extends Comparable<? super T>> void sorteringVedInssetting(T[] a, int start, int slutt) {
-		for(int i = start+1; i <= slutt; i++) {
+	public static <T extends Comparable<? super T>> void insettingsSortering(T[] a, int start, int slutt) {
+		for(int i = start+1; i < slutt; i++) {
             T temp = a[i];
             int j = i-1;
             boolean ferdig = false;
@@ -74,4 +74,69 @@ public class Oppg1 {
         }
     }
 	
+    // Insettingssortering som setter inn to elementer om gangen
+    public static <T extends Comparable<? super T>> void insettingsSorteringB(T[] a, int start, int slutt) {
+
+        //Hvis tabellen har oddetall elementer, flytter vi det minste først
+        if(slutt % 2 == 1) {
+            for(int i = start+1; i < slutt; i++) {
+                if(a[i].compareTo(a[start]) < 0) {
+                    swap(a, start, i);
+                }
+            }
+        }
+        else {
+            //Hvis partall, flytter vi de to minste elementene til starten
+            for(int i = start+2; i < slutt; i++) {
+                if(a[i-2].compareTo(a[i-1]) > 0) {
+                    swap(a, i-2, i-1);
+                }
+                if(a[i-1].compareTo(a[i]) > 0) {
+                    swap(a, i-1, i);
+                }
+                if(a[i-2].compareTo(a[i-1]) > 0) {
+                    swap(a, i-2, i-1);
+                }
+            }
+        }
+
+
+        //Innsettingssortering som flytter to elementer om gangen
+        for(int i = start+1; i < slutt-2; i++) {
+
+            //Sørger for at de to verdiene vi skal sette inn står riktig i forhold til hverandre
+            if(a[i+1].compareTo(a[i+2]) > 0) {
+                swap(a, i+1, i+2);
+            }
+
+            //Sorterer inn største elementet
+            boolean ferdig = false;
+            while(!ferdig && i > 0) {
+                if(a[i].compareTo(a[i+2]) > 0) {
+                    swap(a, i, i+1);
+                    swap(a, i+1, i+2);
+                    i--;
+                }
+                else {
+                    ferdig = true;
+                }
+            }
+
+            //Sorterer inn minste elementet
+            if(i > 0 && a[i].compareTo(a[i+1]) > 0) {
+                boolean bool = false;
+                while(!bool && i > 0) {
+                    if(a[i].compareTo(a[i+1]) > 0) {
+                        swap(a, i,i+1);
+                        i--;
+                    }
+                    else {
+                        bool = true;
+                    }
+                }
+            }
+
+        }
+
+    }
 }
