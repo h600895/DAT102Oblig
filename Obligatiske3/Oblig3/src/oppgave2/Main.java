@@ -6,7 +6,7 @@ import java.util.Random;
 public class Main {
 
 	public static void main(String[] args) {
-		Integer[] tab = makeList(320000); //Angi hvor mange elementer listen skal ha
+		Integer[] tab = makeList(10); //Angi hvor mange elementer listen skal ha
 		maaling(50); //Angi hvor mange målinger som skal gjøres, endre sorteringsalgoritmen i metoden
 		
 	}
@@ -26,8 +26,10 @@ public class Main {
 		ArrayList<Double> malinger = new ArrayList<>();
 		double maling = 0;
 		for(int i = 0; i < antall; i++) {
-			Integer[] tab = makeList(10000);
+			Integer[] tab = makeList(10);
+			print("Usortert", tab);
 			double malingen = insertionSort(tab); //Her skrives navnet på sorteringalgoritmen
+			print("Sortert", tab);
 			maling += malingen;
 			malinger.add(malingen);
 		}
@@ -40,7 +42,7 @@ public class Main {
 	private static double insertionSort(Integer[] tabell) {
 		Integer[] tab = tabell;
 		long start = System.nanoTime();
-		InsertionSort.sorteringVedInssetting(tab, tab.length);
+		InsertionSortInverse.sorteringVedInssetting(tab, tab.length);
 		long end = System.nanoTime();
 		//print("Insertion sort" ,tab);
 		//Tprint(start, end);
@@ -79,11 +81,11 @@ public class Main {
 	}
 	
 	
-	private static void print(String type, Integer[] tab) {
+	public static void print(String type, Integer[] tab) {
 		System.out.print(type + ": ");
-		/*for (Integer i: tab) {
+		for (Integer i: tab) {
 			System.out.print(i + " ");
-		}*/
+		}
 		System.out.println();
 		
 	}

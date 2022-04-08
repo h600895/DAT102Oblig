@@ -2,13 +2,14 @@ package oppgave4;
 
 public class RekusivtTre {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) { //Sjekker høyden til et tre.
+		int antallNoder = 10;
 		BinaerTreNode<Integer> rot = new BinaerTreNode<>(1);
 		rot.setHogre(new BinaerTreNode<Integer>(1));
 		rot.getHogre().setHogre(new BinaerTreNode<Integer>(2));
 		
 		BinaerTreNode<Integer> aktuell = rot;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < antallNoder; i++) {
 			BinaerTreNode<Integer> nyNode = new BinaerTreNode<Integer>(i);
 			
 			aktuell.setVenstre(nyNode);

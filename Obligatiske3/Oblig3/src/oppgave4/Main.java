@@ -15,7 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main ui = new Main(1024);
-		int antallTrer = 100;
+		int antallTrer = 10000;
 		
 		ArrayList<BS_Tre<Integer>> trer = ui.generererTrer(antallTrer);
 		System.out.print("Antall Noder: ");
